@@ -1,8 +1,11 @@
 {
   "name": "svelte-click-outside",
+  "version": "1.0.0",
   "svelte": "src/index.svelte",
   "module": "index.mjs",
   "main": "index.js",
+  "license": "MIT",
+  "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.codes)",
   "scripts": {
     "build": "rollup -c",
     "prepublishOnly": "npm run build"
@@ -16,6 +19,11 @@
   "keywords": [
     "svelte"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joeattardi/svelte-click-outside.git"
+  },
+  "bugs": "https://github.com/joeattardi/svelte-click-outside/issues",
   "files": [
     "src",
     "index.mjs",
