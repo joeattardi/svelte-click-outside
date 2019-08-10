@@ -8,9 +8,13 @@
   "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.codes)",
   "scripts": {
     "build": "rollup -c",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "test": "jest"
   },
   "devDependencies": {
+    "@testing-library/svelte": "^1.7.1",
+    "jest": "^24.8.0",
+    "jest-transform-svelte": "^2.0.2",
     "rollup": "^1.11.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-svelte": "^5.0.0",
