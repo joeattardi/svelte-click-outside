@@ -1,33 +1,51 @@
-*Psst — looking for an app template? Go here --> [sveltejs/template](https://github.com/sveltejs/template)*
+# svelte-click-outside
 
----
+## Purpose
 
-# component-template
+This is a small helper component that lets you listen for clicks *outside* of an element. For example, if you want to close a popup when the user clicks outside of it.
 
-A base for building shareable Svelte components. Clone it with [degit](https://github.com/Rich-Harris/degit):
+## Basic Usage
 
-```bash
-npx degit sveltejs/component-template my-new-component
-cd my-new-component
-npm install # or yarn
+Wrap the element in the `<ClickOutside>` component and listen for the `clickoutside` event:
+
+```html
+  <script>
+    function onClickOutside() {
+      console.log('Clicked outside!');
+    }
+  </script>
+
+  <ClickOutside on:clickoutside={onClickOutside}>
+    <div>Click Outside Me</div>
+  </ClickOutside>
 ```
 
-Your component's source code lives in `src/index.html`.
+## Exclusions
 
-TODO
+By default, clicking on *any* element outside of the wrapped element will cause the event to trigger. You can specify excluded elements that will not trigger the event.
+For example, a button that triggers a popup must be excluded. Otherwise, it will immediately close the popup when it is opened.
 
-* [ ] some firm opinions about the best way to test components
-* [ ] update `degit` so that it automates some of the setup work
+The `ClickOutside` component has an `exclude` prop that expects an array of DOM nodes. Clicks on those nodes or their children will be ignored.
 
+## Example: Show/hide panel
 
-## Setting up
+```html
+  <script>
+    let triggerEl;
+    let panelVisible = false;
 
-* Run `npm init` (or `yarn init`)
-* Replace this README with your own
+    function togglePanel() {
+      panelVisible = !panelVisible;
+    }
 
+    function hidePanel() {
+      panelVisible = false;
+    }
+  </script>
 
-## Consuming components
+  <button bind:this={triggerEl} on:click={togglePanel}>Click Me</button>
 
-Your package.json has a `"svelte"` field pointing to `src/index.html`, which allows Svelte apps to import the source code directly, if they are using a bundler plugin like [rollup-plugin-svelte](https://github.com/rollup/rollup-plugin-svelte) or [svelte-loader](https://github.com/sveltejs/svelte-loader) (where [`resolve.mainFields`](https://webpack.js.org/configuration/resolve/#resolve-mainfields) in your webpack config includes `"svelte"`). **This is recommended.**
-
-For everyone else, `npm run build` will bundle your component's source code into a plain JavaScript module (`index.mjs`) and a UMD script (`index.js`). This will happen automatically when you publish your component to npm, courtesy of the `prepublishOnly` hook in package.json.
+  <ClickOutside on:clickoutside={hidePanel} exclude={[triggerEl]}>
+    <div hidden={!panelVisible}>I'm a panel!</div>
+  </ClickOutside>
+```
