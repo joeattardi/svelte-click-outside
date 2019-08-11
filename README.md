@@ -4,6 +4,10 @@
 
 This is a small helper component that lets you listen for clicks *outside* of an element. For example, if you want to close a popup when the user clicks outside of it.
 
+## Installation
+
+    npm install --save svelte-click-outside
+
 ## Basic Usage
 
 Wrap the element in the `<ClickOutside>` component and listen for the `clickoutside` event:
@@ -31,6 +35,8 @@ The `ClickOutside` component has an `exclude` prop that expects an array of DOM 
 
 ```html
   <script>
+    import ClickOutside from 'svelte-click-outside';
+
     let triggerEl;
     let panelVisible = false;
 
