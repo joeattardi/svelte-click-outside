@@ -31,6 +31,14 @@ For example, a button that triggers a popup must be excluded. Otherwise, it will
 
 The `ClickOutside` component has an `exclude` prop that expects an array of DOM nodes. Clicks on those nodes or their children will be ignored.
 
+## Scope of higher DOM element
+
+By default, `clickoutside` events will be fired for clicks on the DOM's `body`. If you'd prefer to use `window` as a reference (e.g. so the event is fired when elements beyond the scope of `body` are clicked), add the `useWindow` prop:
+
+```
+  <ClickOutside on:clickoutside={hidePanel} useWindow>
+```
+
 ## Example: Show/hide panel
 
 ```html
