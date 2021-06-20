@@ -32,3 +32,9 @@
 <div bind:this={child}>
   <slot></slot>
 </div>
+
+<style>
+  div {
+    display: contents
+  }
+</style>
